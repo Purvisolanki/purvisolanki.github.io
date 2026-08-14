@@ -22,6 +22,7 @@ I'm a Software Engineer with 2+ years of experience building scalable full-stack
 
 ## Tech Stack
 
+# Updated on 2026-08-14 18:26
 - HTML5
 - CSS3 (custom theme layer on top of Bootstrap 4)
 - JavaScript (jQuery)
