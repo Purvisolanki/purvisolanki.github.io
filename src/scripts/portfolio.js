@@ -658,7 +658,41 @@
     }
     animCelestialBackground();
 
-    // Flight simulator section removed.
+    // Simple gliding paper airplane animation
+    (function() {
+        var plane = document.getElementById('paperPlaneContainer');
+        var nav = document.getElementById('mainNav');
+        if (!plane || !nav) return;
+
+        var px = -50;
+        var py = 25;
+        var time = 0;
+
+        function animatePlane() {
+            time += 0.025;
+            
+            var navWidth = nav.clientWidth;
+            // Slide left to right
+            px += 1.8;
+            if (px > navWidth + 50) {
+                px = -50;
+            }
+
+            // Gentle wave/float up and down
+            py = 20 + Math.sin(time) * 6;
+
+            // Gentle tilt alignment (climbing/descending)
+            var angle = Math.cos(time) * 7; // angle in degrees
+
+            plane.style.left = px + 'px';
+            plane.style.top = py + 'px';
+            plane.style.transform = 'rotate(' + angle + 'deg)';
+
+            requestAnimationFrame(animatePlane);
+        }
+
+        animatePlane();
+    })();
 
     // ============================================================
     // Developer Terminal CLI Console Implementation

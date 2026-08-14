@@ -6,46 +6,46 @@
    ============================================================ */
 
 :root {
-    --bg:            #0f1417;
-    --bg-alt:        #141b20;
-    --bg-card:       #18222a;
-    --bg-card-hover: #1e2932;
-    --nav-bg:        rgba(15, 20, 23, 0.88);
-    --nav-merge:     #141b20;
-    --hero-bg:       radial-gradient(circle at 50% -10%, #1a242c 0%, #0f1417 62%);
+    --bg:            #0d0f12;
+    --bg-alt:        #13161b;
+    --bg-card:       #181c24;
+    --bg-card-hover: #202530;
+    --nav-bg:        rgba(13, 15, 18, 0.88);
+    --nav-merge:     #13161b;
+    --hero-bg:       radial-gradient(circle at 50% -10%, #1e2430 0%, #0d0f12 62%);
 
-    --text:       #e8eef0;
-    --text-soft:  #c3ccd1;
-    --text-muted: #8a979e;
+    --text:       #e2e8f0;
+    --text-soft:  #cbd5e1;
+    --text-muted: #94a3b8;
 
-    --accent:        #2dd4bf;  /* teal  */
-    --accent-strong: #14b8a6;
-    --accent-warm:   #f0b429;  /* amber */
+    --accent:        #c084fc;  /* Lavender */
+    --accent-strong: #a855f7;
+    --accent-warm:   #818cf8;  /* Soft Indigo */
 
-    --border: rgba(255, 255, 255, 0.07);
-    --shadow: 0 14px 34px rgba(0, 0, 0, 0.40);
+    --border: rgba(255, 255, 255, 0.05);
+    --shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
     --radius: 12px;
 }
 
 body.light-mode {
-    --bg:            #f5f4ef;
-    --bg-alt:        #ffffff;
+    --bg:            #ffffff;
+    --bg-alt:        #f8fafc;
     --bg-card:       #ffffff;
-    --bg-card-hover: #fbfaf5;
-    --nav-bg:        rgba(247, 246, 242, 0.92);
-    --nav-merge:     #f5f4ef;
-    --hero-bg:       radial-gradient(circle at 50% -10%, #ffffff 0%, #efece4 70%);
+    --bg-card-hover: #f1f5f9;
+    --nav-bg:        rgba(255, 255, 255, 0.92);
+    --nav-merge:     #f8fafc;
+    --hero-bg:       radial-gradient(circle at 50% -10%, #ffffff 0%, #f1f5f9 70%);
 
-    --text:       #1e2a30;
-    --text-soft:  #44525a;
-    --text-muted: #6b7780;
+    --text:       #0f172a;
+    --text-soft:  #334155;
+    --text-muted: #64748b;
 
-    --accent:        #0d9488;
-    --accent-strong: #0f766e;
-    --accent-warm:   #c2871a;
+    --accent:        #7c3aed;  /* Purple */
+    --accent-strong: #6d28d9;
+    --accent-warm:   #4f46e5;  /* Indigo */
 
-    --border: rgba(20, 35, 35, 0.10);
-    --shadow: 0 14px 34px rgba(25, 45, 45, 0.08);
+    --border: rgba(15, 23, 42, 0.08);
+    --shadow: 0 14px 34px rgba(51, 65, 85, 0.06);
 }
 
 /* ---- Base ---- */
@@ -1207,35 +1207,24 @@ body.light-mode .plane-sound-hint {
     }
 }
 
-/* Interactive Space Freighter Container */
+/* Interactive Paper Plane Container */
 .paper-plane-container {
     position: absolute;
-    width: 41px;
-    height: 41px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    z-index: 3;
+    z-index: 5;
     transform-origin: center center;
     pointer-events: none;
-    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
 
 .paper-plane-svg {
-    width: 38px;
-    height: 38px;
-    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.22));
-    transition: filter 0.3s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#mainNav:hover .paper-plane-svg {
-    filter: drop-shadow(0 4px 10px rgba(56, 189, 248, 0.4)) drop-shadow(0 0 6px var(--accent));
-}
-
-#mainNav:hover .paper-plane-svg path[stroke="#38bdf8"] {
-    stroke: #22d3ee !important;
-    filter: drop-shadow(0 0 6px #22d3ee) drop-shadow(0 0 12px #06b6d4) !important;
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease;
 }
 
 @keyframes lightSpeedFlash {
