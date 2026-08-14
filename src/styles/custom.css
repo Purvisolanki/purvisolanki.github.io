@@ -1209,22 +1209,20 @@ body.light-mode .plane-sound-hint {
 
 /* Interactive Paper Plane Container */
 .paper-plane-container {
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
     z-index: 5;
     transform-origin: center center;
     pointer-events: none;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    filter: drop-shadow(0 1.5px 3px rgba(0,0,0,0.15));
 }
 
 .paper-plane-svg {
-    width: 28px;
-    height: 28px;
-    transition: transform 0.2s ease;
+    width: 20px;
+    height: 20px;
 }
 
 @keyframes lightSpeedFlash {
