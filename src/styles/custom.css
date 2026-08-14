@@ -86,12 +86,12 @@ a:hover { color: var(--accent-strong); }
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
-    background: linear-gradient(to bottom, var(--nav-bg) 0%, var(--nav-bg) 68%, var(--nav-merge) 100%) !important;
+    background: var(--nav-bg) !important;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     transition: background 0.4s ease, box-shadow 0.3s ease;
-    padding-top: 0.5rem;
-    padding-bottom: 34px !important;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem !important;
     position: relative;
     z-index: 10;
     border: none;
