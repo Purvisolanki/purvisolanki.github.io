@@ -45,15 +45,20 @@
                 </div>
             </div>
         </nav>
+        <!-- Smoke Trail Canvas -->
+        <canvas id="planeSmokeCanvas" class="plane-smoke-canvas"></canvas>
+
         <!-- Flying White Paper Airplane -->
         <div class="paper-plane-container" id="paperPlaneContainer" aria-label="Flying paper airplane">
-            <svg viewBox="0 0 512 512" class="paper-plane-svg" fill="none">
-                <!-- Main Body/Left Wing -->
-                <path d="M496 16L16 256l192 64 288-304z" fill="#ffffff" />
-                <!-- Right Wing -->
-                <path d="M496 16L208 320l288 176z" fill="#e2e8f0" />
-                <!-- Center Fold / Flap shadow -->
-                <path d="M208 320v112l64-80z" fill="#cbd5e1" />
+            <svg viewBox="0 0 512 512" class="paper-plane-svg">
+                <g stroke="#0f172a" stroke-width="18" stroke-linejoin="round" stroke-linecap="round">
+                    <!-- Main Body/Left Wing -->
+                    <path d="M496 16L16 256l192 64 288-304z" fill="#ffffff" />
+                    <!-- Right Wing -->
+                    <path d="M496 16L208 320l288 176z" fill="#c084fc" />
+                    <!-- Center Fold / Flap shadow -->
+                    <path d="M208 320v112l64-80z" fill="#7c3aed" />
+                </g>
             </svg>
         </div>
 

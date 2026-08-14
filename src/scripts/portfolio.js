@@ -662,10 +662,71 @@
         animCelestialBackground();
     }
 
-    // Gliding left-to-right paper plane animation with minor up/down flutter range
+    // Gliding left-to-right paper plane animation with smoke trail
     (function() {
         var plane = document.getElementById('paperPlaneContainer');
+        var smokeCanvas = document.getElementById('planeSmokeCanvas');
+        var smokeCtx = smokeCanvas ? smokeCanvas.getContext('2d') : null;
         if (!plane) return;
+
+        function resizeSmokeCanvas() {
+            if (!smokeCanvas) return;
+            smokeCanvas.width = window.innerWidth;
+            smokeCanvas.height = window.innerHeight;
+        }
+        if (smokeCanvas) {
+            resizeSmokeCanvas();
+            window.addEventListener('resize', resizeSmokeCanvas);
+        }
+
+        var smokeParticles = [];
+
+        function addSmokeParticle(x, y) {
+            if (!smokeCtx) return;
+            smokeParticles.push({
+                x: x,
+                y: y,
+                vx: -0.6 - Math.random() * 0.4,
+                vy: (Math.random() - 0.5) * 0.3,
+                size: 2.5 + Math.random() * 2,
+                maxSize: 12 + Math.random() * 8,
+                alpha: 0.65,
+                life: 0,
+                maxLife: 35 + Math.random() * 15
+            });
+        }
+
+        function updateAndDrawSmoke() {
+            if (!smokeCtx) return;
+            smokeCtx.clearRect(0, 0, smokeCanvas.width, smokeCanvas.height);
+
+            var isLight = document.body.classList.contains('light-mode');
+
+            for (var i = smokeParticles.length - 1; i >= 0; i--) {
+                var p = smokeParticles[i];
+                p.life++;
+                p.x += p.vx;
+                p.y += p.vy;
+
+                var progress = p.life / p.maxLife;
+                var currentSize = p.size + (p.maxSize - p.size) * progress;
+                var currentAlpha = p.alpha * (1 - progress);
+
+                smokeCtx.beginPath();
+                smokeCtx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
+
+                if (isLight) {
+                    smokeCtx.fillStyle = 'rgba(100, 116, 139, ' + (currentAlpha * 0.75) + ')';
+                } else {
+                    smokeCtx.fillStyle = 'rgba(226, 232, 240, ' + currentAlpha + ')';
+                }
+                smokeCtx.fill();
+
+                if (p.life >= p.maxLife) {
+                    smokeParticles.splice(i, 1);
+                }
+            }
+        }
 
         var px = -60;
         var py = 85;
@@ -675,21 +736,24 @@
             time += 0.04;
             
             var screenWidth = window.innerWidth;
-            // Flight movement left to right across full viewport
             px += 2.8;
             if (px > screenWidth + 60) {
                 px = -60;
+                smokeParticles = [];
             }
 
-            // Up/down flutter position just below navbar (around Y = 80-95px)
             py = 85 + Math.sin(time) * 8 + Math.cos(time * 2.2) * 3;
-
-            // Glide tilt pointing forward right -> with gentle flutter oscillation
             var angle = 45 + (Math.cos(time) * 6 + Math.sin(time * 2.2) * 2);
 
             plane.style.left = px + 'px';
             plane.style.top = py + 'px';
             plane.style.transform = 'rotate(' + angle + 'deg)';
+
+            // Tail position for smoke emitter (just behind paper plane)
+            if (px > -20 && px < screenWidth + 20) {
+                addSmokeParticle(px + 4, py + 18);
+            }
+            updateAndDrawSmoke();
 
             requestAnimationFrame(animatePlane);
         }

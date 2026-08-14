@@ -1207,25 +1207,44 @@ body.light-mode .plane-sound-hint {
     }
 }
 
-/* Interactive Paper Plane Container */
+/* Interactive Paper Plane & Smoke Trail */
+.plane-smoke-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1049;
+}
+
 .paper-plane-container {
     position: fixed;
     top: 85px; /* position below navbar */
     left: -60px; /* start off-screen left */
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1050; /* position above section overlays */
     transform-origin: center center;
     pointer-events: none;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
 }
 
 .paper-plane-svg {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 4px rgba(192, 132, 252, 0.8));
+}
+
+body.light-mode .paper-plane-container {
+    filter: drop-shadow(0 4px 10px rgba(15, 23, 42, 0.35));
+}
+
+body.light-mode .paper-plane-svg {
+    filter: drop-shadow(0 0 4px rgba(124, 58, 237, 0.7));
 }
 
 @keyframes lightSpeedFlash {
