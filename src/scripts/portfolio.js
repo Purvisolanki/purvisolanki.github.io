@@ -671,10 +671,10 @@
         function animatePlane() {
             time += 0.045;
             
-            var navWidth = nav.clientWidth;
-            // Flight movement left to right
+            var screenWidth = window.innerWidth;
+            // Flight movement left to right across full viewport
             px += 2.0;
-            if (px > navWidth + 60) {
+            if (px > screenWidth + 60) {
                 px = -60;
             }
 

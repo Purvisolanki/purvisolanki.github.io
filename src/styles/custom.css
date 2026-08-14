@@ -1209,7 +1209,9 @@ body.light-mode .plane-sound-hint {
 
 /* Interactive Paper Plane Container */
 .paper-plane-container {
-    position: absolute;
+    position: fixed;
+    top: 80px; /* position below navbar */
+    left: -60px; /* start off-screen left */
     width: 32px;
     height: 32px;
     display: flex;
