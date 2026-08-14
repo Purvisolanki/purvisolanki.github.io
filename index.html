@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Purvi Solanki - Software Engineer | Full-Stack · REST APIs · AWS/OCI" />
+        <meta name="author" content="Purvi Solanki" />
+        <title>Purvi Solanki | Software Engineer</title>
+        <link rel="icon" type="image/x-icon" href="./assets/favicon-Dx99-ExB.ico" />
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+      <script type="module" crossorigin src="./assets/index-h31CtQjj.js"></script>
+      <link rel="stylesheet" crossorigin href="./assets/index-gsMo2oaI.css">
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger brand-name" href="#page-top">
+                    <span class="nav-brand-text">Purvi Solanki</span>
+                </a>
+                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#about">About</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#experience">Experience</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#skills">Skills</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#project">Projects</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="Purvi_Solanki_Resume.pdf" target="_blank">Resume</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2" id="terminalNavBtn" href="javascript:void(0);" title="Open Developer Terminal"><i class="fas fa-terminal"></i> Terminal</a></li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <div class="toggle-switches switches">
+                                <label class="switch">
+                                  <input type="checkbox" id="dark-mode">
+                                  <span class="slider">
+                                    <i class="fas fa-sun theme-icon theme-icon-sun"></i>
+                                    <i class="fas fa-moon theme-icon theme-icon-moon"></i>
+                                  </span>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Celestial Background (Static Moon, Stars, Asteroids) -->
+            <canvas id="celestialCanvas" class="celestial-canvas"></canvas>
+            <!-- Space Freighter Flight Tunnel -->
+            <div class="plane-tunnel" id="planeTunnel">
+                <canvas id="tunnelCanvas" class="tunnel-canvas"></canvas>
+                <button class="plane-sound-hint" id="planeSoundHint" type="button" aria-label="Enable jet sound">
+                    Tap plane for sound
+                </button>
+                <div class="paper-plane-container" id="paperPlaneContainer" aria-label="Fast saucer freighter spaceship">
+                    <svg viewBox="0 0 64 64" class="paper-plane-svg">
+                        <defs>
+                            <radialGradient id="freighterHull" cx="45%" cy="36%" r="64%">
+                                <stop offset="0%" stop-color="#f8fafc" />
+                                <stop offset="55%" stop-color="#cbd5e1" />
+                                <stop offset="100%" stop-color="#64748b" />
+                            </radialGradient>
+                        </defs>
+                        <path d="M9 32 C9 20 18 12 31 12 C43 12 52 19 54 30 C56 42 45 52 31 52 C18 52 9 44 9 32 Z" fill="#94a3b8" />
+                        <circle cx="30" cy="32" r="18" fill="url(#freighterHull)" />
+                        <circle cx="30" cy="32" r="8" fill="#94a3b8" />
+                        <circle cx="30" cy="32" r="3" fill="#334155" />
+                        <path d="M31 20 L56 17 L58 24 L41 28 Z" fill="#cbd5e1" />
+                        <path d="M31 44 L56 47 L58 40 L41 36 Z" fill="#cbd5e1" />
+                        <path d="M44 27 L57 27 L57 37 L44 37 Z" fill="#475569" />
+                        <path d="M34 40 L47 52 L54 48 L40 36 Z" fill="#cbd5e1" />
+                        <path d="M48 52 C53 52 60 48 60 43 C60 39 55 39 49 41" fill="#334155" />
+                        <ellipse cx="23" cy="20" rx="5" ry="2.2" fill="#475569" transform="rotate(-20 23 20)" />
+                        <path d="M17 18 L20 27 M42 19 L36 27 M17 46 L21 37 M42 45 L36 37" stroke="#64748b" stroke-width="1.4" stroke-linecap="round" opacity="0.75" />
+                        <path d="M9.5 24 C8.5 29 8.5 35 9.5 40" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" filter="drop-shadow(0 0 4px #0ea5e9)" />
+                        <circle cx="42" cy="24" r="1.2" fill="#ef4444" />
+                        <circle cx="37" cy="43" r="1.2" fill="#f59e0b" />
+                    </svg>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Landing: Hero left + About right -->
+        <header class="masthead bg-secondary text-white" id="portfolio">
+            <div class="container">
+                <div class="row align-items-center landing-row">
+                    <!-- Left: intro -->
+                    <div class="col-lg-5 landing-left">
+                        <div class="photo mb-4" id="my-photo">
+                            <div class="circle"></div>
+                            <div class="circle2"></div>
+                            <img alt="Purvi Solanki" class="photo-img" src="./assets/profile_img-CpZKkDPH.jpeg">
+                        </div>
+                        <div class="landing-name">
+                            <h1 class="masthead-heading text-uppercase mb-0">Purvi Solanki</h1>
+                        </div>
+                        <p class="masthead-subheading font-weight-light">Software Engineer | Full-Stack · REST APIs · AWS/OCI</p>
+                    </div>
+                    <!-- Right: About -->
+                    <div class="col-lg-7 landing-right" id="about">
+                        <h2 class="landing-section-title">About</h2>
+                        <div class="landing-content">
+                            <p>Software Engineer with <strong>2+ years</strong> of experience building scalable full-stack applications, REST APIs, and cloud-based integrations using React.js, Node.js, Express.js, Oracle Cloud, and AWS. Experienced in object-oriented programming and Agile development.</p>
+                            <p>Currently working as a Software Developer at <strong>Capgemini</strong> in the modernization project for Ballester Hermanos Inc. (BHI), and previously as a Front-end Developer at <strong>Fin Coopers India</strong>. Gained key academic and research exposure from internships at <strong>Persistent Systems</strong> and <strong>IIT Indore</strong>.</p>
+                            <p>Skilled in leveraging and developing AI-assisted workflows using tools like ChatGPT, Claude, Antigravity, and Cursor AI to accelerate development cycles and improve engineering productivity. I hold a Bachelor of Technology in Computer Science & IT from <strong>Acropolis Institute of Technology and Research</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Experience Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="experience">
+            <div class="container">
+                <h2 class="section-title-clean">Experience</h2>
+                <div class="section-content">
+                    <!-- Capgemini -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">Software Developer</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">Capgemini</span>
+                                <span class="exp-date">Dec 2024 - Present</span>
+                            </div>
+                            <span class="exp-location">Pune, Maharashtra · Hybrid</span>
+                        </div>
+                        <ul>
+                            <li>Contributed to the Ballester Hermanos Inc. (BHI) modernization project by developing full-stack enterprise modules using React.js, Node.js, Express.js, and RESTful APIs for workflow automation and business operations.</li>
+                            <li>Built responsive forms, dashboards, and API-driven functionalities while integrating scalable backend services and microservice-oriented modules using Oracle Integration Cloud (OIC) and Oracle Cloud Infrastructure (OCI).</li>
+                            <li>Developed and optimized backend workflows, API integrations, and database operations, improving application reliability and reducing manual processing effort by nearly 30%.</li>
+                            <li>Developed and utilized AI-assisted development workflows using Claude, Cursor AI, and ChatGPT to improve development velocity, automate repetitive tasks, and enhance code quality.</li>
+                            <li>Collaborated in Agile teams with 6+ developers on feature development, debugging, code reviews, and production deployments to deliver maintainable and scalable solutions.</li>
+                        </ul>
+                    </div>
+                    <!-- Fin Coopers -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">Front-end Developer</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">Fin Coopers India Pvt Ltd</span>
+                                <span class="exp-date">Jul 2024 - Nov 2024</span>
+                            </div>
+                            <span class="exp-location">Indore, M.P · On-site</span>
+                        </div>
+                        <ul>
+                            <li>Developed and maintained full-stack applications using the MERN stack (MongoDB, Express.js, React.js, Node.js) for financial and enterprise web platforms.</li>
+                            <li>Improved UI responsiveness and state management efficiency by nearly 25% through optimized React.js components and REST API integration workflows.</li>
+                            <li>Developed and maintained Finexe 2.0 and multiple corporate websites, enhancing functionality, performance, and overall user experience.</li>
+                        </ul>
+                    </div>
+                    <!-- Persistent Systems -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">Martian Intern</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">Persistent Systems</span>
+                                <span class="exp-date">Jul 2023 - Aug 2023</span>
+                            </div>
+                            <span class="exp-location">Pune, Maharashtra · Remote</span>
+                        </div>
+                        <ul>
+                            <li>Gained practical experience in DSA, DBMS, and programming languages during the internship, applying key backend concepts to excel in technical assessments.</li>
+                        </ul>
+                    </div>
+                    <!-- IIT Indore -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">Research Intern</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">Indian Institute of Technology (IIT), Indore</span>
+                                <span class="exp-date">Oct 2022 - Nov 2022</span>
+                            </div>
+                            <span class="exp-location">Indore, M.P · On-site</span>
+                        </div>
+                        <ul>
+                            <li>Researched software-defined IoT networks, analyzing their potential benefits and challenges, contributing to a 35% growth in data analysis, report writing, and IoT-SDN intersection understanding.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="skills">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">Skills</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-tools"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h5><i class="fas fa-code"></i> Languages</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">JavaScript (ES6+)</span>
+                                    <span class="skill-tag">C++</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">HTML/CSS</span>
+                                    <span class="skill-tag">SQL</span>
+                                    <span class="skill-tag">PL/SQL</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-laptop-code"></i> Frontend</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React.js</span>
+                                    <span class="skill-tag">Next.js</span>
+                                    <span class="skill-tag">Redux Toolkit</span>
+                                    <span class="skill-tag">HTML5</span>
+                                    <span class="skill-tag">CSS3</span>
+                                    <span class="skill-tag">Bootstrap</span>
+                                    <span class="skill-tag">Material-UI</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-server"></i> Backend</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">Express.js</span>
+                                    <span class="skill-tag">REST APIs</span>
+                                    <span class="skill-tag">FastAPI</span>
+                                    <span class="skill-tag">Microservices</span>
+                                    <span class="skill-tag">Object-Oriented Programming (OOP)</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-database"></i> Databases</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">MongoDB</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Oracle DB</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-cloud"></i> Cloud & Tools</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">AWS</span>
+                                    <span class="skill-tag">Oracle Cloud (OCI)</span>
+                                    <span class="skill-tag">Oracle Integration Cloud (OIC)</span>
+                                    <span class="skill-tag">Docker (Basics)</span>
+                                    <span class="skill-tag">Kubernetes (Basics)</span>
+                                    <span class="skill-tag">Git & GitHub</span>
+                                    <span class="skill-tag">Postman</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-brain"></i> AI & Productivity</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Claude</span>
+                                    <span class="skill-tag">Cursor AI</span>
+                                    <span class="skill-tag">ChatGPT</span>
+                                    <span class="skill-tag">GitHub Copilot</span>
+                                    <span class="skill-tag">Agile / Scrum</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Education Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="education">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">Education</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="row experience">
+                    <div class="col-lg-12 mr-auto">
+                        <div class="experience_card">
+                            <div class="exp-top">
+                                <h5 class="exp-title">Bachelor of Technology (B.Tech) - CS & IT</h5>
+                                <div class="exp-row">
+                                    <span class="exp-company">Acropolis Institute of Technology and Research</span>
+                                    <span class="exp-date">2020 - 2024</span>
+                                </div>
+                                <span class="exp-location">CGPA: 8.4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="project">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">Projects</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-wallet fa-3x"></i></div>
+                            <h3>Finexe 2.0</h3>
+                            <p>Built a production-grade loan management & ERP platform with multi-step loan flows, EMI tracking, and HRMS using React and Redux.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://ecomzy-jwt-assignment.vercel.app/" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-utensils fa-3x"></i></div>
+                            <h3>FoodHub</h3>
+                            <p>Designed and developed RESTful APIs using Node.js/Express.js following modular OOP principles, JWT auth, and MongoDB optimization.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/Purvisolanki" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-chart-line fa-3x"></i></div>
+                            <h3>CryptoPulse</h3>
+                            <p>Real-time cryptocurrency tracking platform building with React.js, displaying market statistics and trends with clean custom charts.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://crypto-pulse-ochre.vercel.app/" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Achievements Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="achievements">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">Certifications & Achievements</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <ul class="achievements-list">
+                            <li><b>AWS Certified Solutions Architect – Associate</b> (AWS Certification).</li>
+                            <li><b>Oracle Cloud Infrastructure 2025 Certified Application Integration Professional</b> (Oracle University – 1Z0-1042-25).</li>
+                            <li><b>Oracle Cloud Infrastructure 2025 Architect Associate</b> (Oracle University – 1Z0-1072-25).</li>
+                            <li><b>Front-End Developer Capstone</b> (Issued by Meta via Coursera).</li>
+                            <li>Solved <b>500+ problems</b> on coding platforms like LeetCode, CodeChef, and GeeksforGeeks.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer text-center" id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <p class="lead mb-0">Pune, Maharashtra<br/>India</p>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Connect</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/Purvisolanki" target="_blank" aria-label="GitHub"><i class="fab fa-fw fa-github"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/purvi-solanki-b0b032203" target="_blank" aria-label="LinkedIn"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">Email</h4>
+                        <p class="lead mb-0">solankipurvi.works@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="copyright py-4 text-center text-white" id="copy-id">
+            <div class="container"><small>© Purvi Solanki <span id="copyrightYear"></span></small></div>
+        </div>
+        <!-- Scroll to Top Button-->
+        <div class="scroll-to-top d-lg-none position-fixed">
+            <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        <!-- Floating Terminal Launch Button -->
+        <div id="terminalToggleBtn" title="Launch Developer Terminal (~ key)" class="terminal-toggle-btn">
+            <i class="fas fa-terminal"></i>
+        </div>
+
+        <!-- Hidden Developer Terminal CLI Overlay -->
+        <div id="developerTerminal" class="dev-terminal-overlay hidden">
+            <!-- Canvas background for Matrix Digital Rain -->
+            <canvas id="terminalCanvas" class="terminal-matrix-canvas"></canvas>
+            
+            <!-- Glassmorphic Terminal Container -->
+            <div class="terminal-container">
+                <!-- Mac Command dots Header -->
+                <div class="terminal-header">
+                    <div class="header-buttons">
+                        <span class="btn-dot close-btn" id="terminalCloseBtn"></span>
+                        <span class="btn-dot minimize-btn"></span>
+                        <span class="btn-dot expand-btn"></span>
+                    </div>
+                    <div class="header-title">purvi@solanki: ~ (bash)</div>
+                </div>
+                
+                <!-- Scrollable Console Body -->
+                <div class="terminal-body" id="terminalBody">
+                    <div class="terminal-status-grid">
+                        <div>
+                            <span class="terminal-status-label">session</span>
+                            <strong>portfolio-shell</strong>
+                        </div>
+                        <div>
+                            <span class="terminal-status-label">mode</span>
+                            <strong>interactive</strong>
+                        </div>
+                        <div>
+                            <span class="terminal-status-label">status</span>
+                            <strong class="terminal-online">online</strong>
+                        </div>
+                    </div>
+                    <div class="terminal-welcome">
+                        <p>Welcome to the Developer Terminal. [Version 3.1.26-RELEASE]</p>
+                        <p>Type <span class="cmd-highlight">help</span> to view all available commands. Press <span class="cmd-highlight">~</span> or click close to exit.</p>
+                    </div>
+                    <div class="terminal-command-chips" aria-label="Quick terminal commands">
+                        <button type="button" class="terminal-chip" data-terminal-command="about">about</button>
+                        <button type="button" class="terminal-chip" data-terminal-command="skills">skills</button>
+                        <button type="button" class="terminal-chip" data-terminal-command="experience">experience</button>
+                        <button type="button" class="terminal-chip" data-terminal-command="matrix">matrix</button>
+                        <button type="button" class="terminal-chip" data-terminal-command="clear">clear</button>
+                    </div>
+                    <div class="terminal-output-log" id="terminalOutputLog"></div>
+                    <!-- Prompt line -->
+                    <div class="terminal-prompt-line">
+                        <span class="prompt-user">purvi@solanki:~$</span>
+                        <span class="prompt-text-input" id="terminalPromptInput"></span>
+                        <span class="prompt-cursor"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Hidden input to capture standard typing -->
+            <input type="text" id="terminalHiddenInput" class="terminal-hidden-input" autocomplete="off" spellcheck="false">
+        </div>
+
+        <!-- Scripts-->
+    </body>
+</html>
