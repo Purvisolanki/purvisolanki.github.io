@@ -684,8 +684,8 @@
             // Up/down flutter position just below navbar (around Y = 80-95px)
             py = 85 + Math.sin(time) * 8 + Math.cos(time * 2.2) * 3;
 
-            // Glide tilt (matches climbing/descending angle)
-            var angle = Math.cos(time) * 12 + Math.sin(time * 2.2) * 4;
+            // Glide tilt pointing forward right -> with gentle flutter oscillation
+            var angle = 45 + (Math.cos(time) * 6 + Math.sin(time * 2.2) * 2);
 
             plane.style.left = px + 'px';
             plane.style.top = py + 'px';
