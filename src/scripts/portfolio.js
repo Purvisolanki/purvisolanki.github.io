@@ -662,7 +662,7 @@
         animCelestialBackground();
     }
 
-    // Gliding left-to-right paper plane animation with smoke trail
+    // Gliding left-to-right paper plane animation with GPU acceleration & smoke trail
     (function() {
         var plane = document.getElementById('paperPlaneContainer');
         var smokeCanvas = document.getElementById('planeSmokeCanvas');
@@ -680,19 +680,23 @@
         }
 
         var smokeParticles = [];
+        var maxSmoke = 45;
 
         function addSmokeParticle(x, y) {
             if (!smokeCtx) return;
+            if (smokeParticles.length >= maxSmoke) {
+                smokeParticles.shift();
+            }
             smokeParticles.push({
                 x: x,
                 y: y,
-                vx: -0.6 - Math.random() * 0.4,
-                vy: (Math.random() - 0.5) * 0.3,
-                size: 2.5 + Math.random() * 2,
-                maxSize: 12 + Math.random() * 8,
-                alpha: 0.65,
+                vx: -1.2 - Math.random() * 0.8,
+                vy: (Math.random() - 0.5) * 0.4,
+                size: 3.0 + Math.random() * 2,
+                maxSize: 14 + Math.random() * 8,
+                alpha: 0.70,
                 life: 0,
-                maxLife: 35 + Math.random() * 15
+                maxLife: 28 + Math.random() * 10
             });
         }
 
@@ -728,37 +732,40 @@
             }
         }
 
-        var px = -60;
+        var px = -80;
         var py = 85;
         var time = 0;
+        var lastFrameTime = performance.now();
         
-        function animatePlane() {
-            time += 0.04;
+        function animatePlane(now) {
+            var dt = Math.min((now - (lastFrameTime || now)) / 1000, 0.05);
+            lastFrameTime = now;
+
+            time += dt * 2.8;
             
             var screenWidth = window.innerWidth;
-            px += 2.8;
-            if (px > screenWidth + 60) {
-                px = -60;
+            px += 5.2; // Faster, smooth flight speed
+            if (px > screenWidth + 80) {
+                px = -80;
                 smokeParticles = [];
             }
 
-            py = 85 + Math.sin(time) * 8 + Math.cos(time * 2.2) * 3;
-            var angle = 45 + (Math.cos(time) * 6 + Math.sin(time * 2.2) * 2);
+            py = 85 + Math.sin(time * 1.6) * 9 + Math.cos(time * 3.2) * 4;
+            var angle = 45 + (Math.cos(time * 1.6) * 7 + Math.sin(time * 3.2) * 3);
 
-            plane.style.left = px + 'px';
-            plane.style.top = py + 'px';
-            plane.style.transform = 'rotate(' + angle + 'deg)';
+            // GPU Hardware Accelerated Translate 3D
+            plane.style.transform = 'translate3d(' + px + 'px, ' + py + 'px, 0px) rotate(' + angle + 'deg)';
 
             // Tail position for smoke emitter (just behind paper plane)
-            if (px > -20 && px < screenWidth + 20) {
-                addSmokeParticle(px + 4, py + 18);
+            if (px > -40 && px < screenWidth + 40) {
+                addSmokeParticle(px + 6, py + 22);
             }
             updateAndDrawSmoke();
 
             requestAnimationFrame(animatePlane);
         }
 
-        animatePlane();
+        requestAnimationFrame(animatePlane);
     })();
 
     // ============================================================

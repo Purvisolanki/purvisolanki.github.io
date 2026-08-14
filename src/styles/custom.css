@@ -1220,8 +1220,8 @@ body.light-mode .plane-sound-hint {
 
 .paper-plane-container {
     position: fixed;
-    top: 85px; /* position below navbar */
-    left: -60px; /* start off-screen left */
+    top: 0;
+    left: 0;
     width: 40px;
     height: 40px;
     display: flex;
@@ -1230,6 +1230,7 @@ body.light-mode .plane-sound-hint {
     z-index: 1050; /* position above section overlays */
     transform-origin: center center;
     pointer-events: none;
+    will-change: transform;
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
 }
 
