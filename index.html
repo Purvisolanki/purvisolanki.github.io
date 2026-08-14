@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Abhay Tiwari - Software Engineer | Backend & Platforms" />
+        <meta name="author" content="Abhay Tiwari" />
+        <title>Abhay Tiwari | Software Engineer</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger brand-name" href="#page-top">
+                    <img src="assets/img/hi.png" alt="logo" class="nav-logo">
+                    <span class="nav-brand-text">Abhay Tiwari</span>
+                </a>
+                <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#about">About</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#experience">Experience</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#skills">Skills</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#project">Projects</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2 js-scroll-trigger" href="https://drive.google.com/drive/folders/11jF4yCaKWdyIQB-cJHeEKIoZcesFBH8s?usp=sharing" target="_blank">Resume</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-2" id="terminalNavBtn" href="javascript:void(0);" title="Open Developer Terminal"><i class="fas fa-terminal"></i> Terminal</a></li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <div class="toggle-switches switches">
+                                <label class="switch">
+                                  <input type="checkbox" id="dark-mode">
+                                  <span class="slider">
+                                    <i class="fas fa-sun theme-icon theme-icon-sun"></i>
+                                    <i class="fas fa-moon theme-icon theme-icon-moon"></i>
+                                  </span>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Celestial Background (Static Moon, Stars, Asteroids) -->
+            <canvas id="celestialCanvas" class="celestial-canvas"></canvas>
+            <!-- Space Freighter Flight Tunnel -->
+            <div class="plane-tunnel" id="planeTunnel">
+                <canvas id="tunnelCanvas" class="tunnel-canvas"></canvas>
+                <button class="plane-sound-hint" id="planeSoundHint" type="button" aria-label="Enable jet sound">
+                    Tap plane for sound
+                </button>
+                <div class="paper-plane-container" id="paperPlaneContainer" aria-label="Fast saucer freighter spaceship">
+                    <svg viewBox="0 0 64 64" class="paper-plane-svg">
+                        <defs>
+                            <radialGradient id="freighterHull" cx="45%" cy="36%" r="64%">
+                                <stop offset="0%" stop-color="#f8fafc" />
+                                <stop offset="55%" stop-color="#cbd5e1" />
+                                <stop offset="100%" stop-color="#64748b" />
+                            </radialGradient>
+                        </defs>
+                        <path d="M9 32 C9 20 18 12 31 12 C43 12 52 19 54 30 C56 42 45 52 31 52 C18 52 9 44 9 32 Z" fill="#94a3b8" />
+                        <circle cx="30" cy="32" r="18" fill="url(#freighterHull)" />
+                        <circle cx="30" cy="32" r="8" fill="#94a3b8" />
+                        <circle cx="30" cy="32" r="3" fill="#334155" />
+                        <path d="M31 20 L56 17 L58 24 L41 28 Z" fill="#cbd5e1" />
+                        <path d="M31 44 L56 47 L58 40 L41 36 Z" fill="#cbd5e1" />
+                        <path d="M44 27 L57 27 L57 37 L44 37 Z" fill="#475569" />
+                        <path d="M34 40 L47 52 L54 48 L40 36 Z" fill="#cbd5e1" />
+                        <path d="M48 52 C53 52 60 48 60 43 C60 39 55 39 49 41" fill="#334155" />
+                        <ellipse cx="23" cy="20" rx="5" ry="2.2" fill="#475569" transform="rotate(-20 23 20)" />
+                        <path d="M17 18 L20 27 M42 19 L36 27 M17 46 L21 37 M42 45 L36 37" stroke="#64748b" stroke-width="1.4" stroke-linecap="round" opacity="0.75" />
+                        <path d="M9.5 24 C8.5 29 8.5 35 9.5 40" fill="none" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" filter="drop-shadow(0 0 4px #0ea5e9)" />
+                        <circle cx="42" cy="24" r="1.2" fill="#ef4444" />
+                        <circle cx="37" cy="43" r="1.2" fill="#f59e0b" />
+                    </svg>
+                </div>
+            </div>
+        </nav>
+        <!-- Landing: Hero left + About right -->
+        <header class="masthead bg-secondary text-white" id="portfolio">
+            <div class="container">
+                <div class="row align-items-center landing-row">
+                    <!-- Left: intro -->
+                    <div class="col-lg-5 landing-left">
+                        <div class="photo mb-4" id="my-photo">
+                            <div class="circle"></div>
+                            <div class="circle2"></div>
+                            <img alt="Abhay Tiwari" class="photo-img" src="assets/img/avtar2.png">
+                        </div>
+                        <div class="landing-name">
+                            <img alt="wave" class="photo-img-2" src="assets/img/hi.png">
+                            <h1 class="masthead-heading text-uppercase mb-0">Abhay Tiwari</h1>
+                        </div>
+                        <p class="masthead-subheading font-weight-light">Backend Engineer · Distributed Systems · Cloud & Platforms · IIT Patna Alumnus</p>
+                    </div>
+                    <!-- Right: About -->
+                    <div class="col-lg-7 landing-right" id="about">
+                        <h2 class="landing-section-title">About</h2>
+                        <div class="landing-content">
+                            <p>Backend Engineer with <strong>2.5+ years</strong> of experience developing scalable services and distributed systems. Proficient in system design, APIs, and event-driven applications, with strong debugging skills, thoughtful code reviews, and ownership of production-quality work.</p>
+                            <p>Currently working as a Software Engineer at <strong>Riverbed Technology</strong>, previously at <strong>MicroStrategy (Strategy)</strong> and <strong>Jio Platforms</strong>. I earned my <strong class="credential-emphasis">B.Tech from IIT Patna</strong> (<strong>Indian Institute of Technology Patna</strong>) and am <strong>AWS Certified Solutions Architect - Associate</strong>.</p>
+                            <p>My tech stack spans Java, Python, Go, and JavaScript, with expertise in Spring Boot, FastAPI, Gin, and Node.js. I focus on backend services, APIs, distributed systems, and scalable architecture, while using AI-assisted tools like Cursor and Claude to improve debugging, code reviews, and engineering delivery.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Experience Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="experience">
+            <div class="container">
+                <h2 class="section-title-clean">Experience</h2>
+                <div class="section-content">
+                    <!-- Riverbed -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">Software Engineer</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">Riverbed Technology</span>
+                                <span class="exp-date">Jan 2026 - Present</span>
+                            </div>
+                            <span class="exp-location">Bengaluru, Karnataka · On-site</span>
+                        </div>
+                        <ul>
+                            <li>Working as part of the Data Express team, which builds backend systems for high-speed, low-latency data movement between and within cloud environments including AWS, OCI, and Azure.</li>
+                            <li>Contributing to reliable data transfer workflows, service integrations, and platform components that help move enterprise data efficiently across cloud boundaries.</li>
+                        </ul>
+                    </div>
+                    <!-- MicroStrategy -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">Software Engineer</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">Strategy (MicroStrategy)</span>
+                                <span class="exp-date">Oct 2024 - Jan 2026</span>
+                            </div>
+                            <span class="exp-location">Pune, Maharashtra · On-site</span>
+                        </div>
+                        <ul>
+                            <li>Engineered backend APIs to provide migration workflows with detailed environment metadata (2000+ customers), streamlining data access and reducing manual queries by 70%.</li>
+                            <li>Developed the MSTR-CLI for Windows and Mac, a command-line tool to deploy and manage MicroStrategy environments in customer Kubernetes clusters, increasing platform coverage by 60%.</li>
+                            <li>Led Python upgrade initiative across 2,000+ customer environments; implemented multithreaded automation for runtime via stack upgrades and updated repositories, image generation, and provisioning workflows.</li>
+                        </ul>
+                    </div>
+                    <!-- Jio -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">Software Engineer</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">Jio Platforms Limited</span>
+                                <span class="exp-date">Oct 2023 - Sep 2024</span>
+                            </div>
+                            <span class="exp-location">Navi Mumbai, Maharashtra · On-site</span>
+                        </div>
+                        <ul>
+                            <li>Built full-stack Cluster Validation Engine to automate sanity checks and health assessments of OpenShift clusters and generate reports in Golang and React.</li>
+                            <li>Developed backend validation workflows, report generation APIs, and a user-friendly interface for running bulk cluster checks and operational tests.</li>
+                            <li>Developed scalable services for the cloud-native Mimosa platform, focusing on backend reliability, health checks, and service readiness.</li>
+                            <li>Worked with MongoDB, MariaDB, Redis, and Kafka-backed components for application data, caching, and event streaming use cases.</li>
+                            <li>Conducted distributed stress testing and performance validation using tools like Locust, JMeter, and Sysbench.</li>
+                        </ul>
+                    </div>
+                    <!-- ByteLearn -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">SWE Intern</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">ByteLearn</span>
+                                <span class="exp-date">Apr 2022 - Jul 2023</span>
+                            </div>
+                            <span class="exp-location">Remote</span>
+                        </div>
+                        <ul>
+                            <li>Worked with the solver team to power the AI-based Math solver. Handled different chapters and enabled the chatbot to solve different types of mathematical problems.</li>
+                            <li>Contributed over 10,000 lines of code which is being used by thousands of students daily.</li>
+                            <li>Contributed to the overall planning and discussion on design and implementation. Also worked in testing and automation.</li>
+                        </ul>
+                    </div>
+                    <!-- Bhumio -->
+                    <div class="experience_card">
+                        <div class="exp-top">
+                            <h5 class="exp-title">SWE Intern</h5>
+                            <div class="exp-row">
+                                <span class="exp-company">Bhumio, Inc.</span>
+                                <span class="exp-date">Jan 2022 - Mar 2022</span>
+                            </div>
+                            <span class="exp-location">Remote</span>
+                        </div>
+                        <ul>
+                            <li>Integrated Google Calendar to the React app where users can directly add and update events to their Google Calendar.</li>
+                            <li>Added debouncing effect to input field and fixed several UI bugs.</li>
+                            <li>Added several components like cards and styled switch components using MUI.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="skills">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">Skills</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-tools"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h5><i class="fas fa-code"></i> Languages</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Go</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">C++</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-layer-group"></i> Frameworks</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Spring Boot</span>
+                                    <span class="skill-tag">FastAPI</span>
+                                    <span class="skill-tag">Gin</span>
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">React.js</span>
+                                    <span class="skill-tag">Express</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-cloud"></i> Cloud & Platforms</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">AWS</span>
+                                    <span class="skill-tag">AWS SAA Certified</span>
+                                    <span class="skill-tag">Azure</span>
+                                    <span class="skill-tag">OCI</span>
+                                    <span class="skill-tag">Kubernetes</span>
+                                    <span class="skill-tag">OpenShift</span>
+                                    <span class="skill-tag">Docker</span>
+                                    <span class="skill-tag">Helm</span>
+                                    <span class="skill-tag">Terraform</span>
+                                    <span class="skill-tag">Jenkins</span>
+                                    <span class="skill-tag">ArgoCD</span>
+                                    <span class="skill-tag">CI/CD</span>
+                                    <span class="skill-tag">Grafana</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-database"></i> Databases & Messaging</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">MongoDB</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">MariaDB</span>
+                                    <span class="skill-tag">DynamoDB</span>
+                                    <span class="skill-tag">Redis</span>
+                                    <span class="skill-tag">Apache Kafka</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5><i class="fas fa-project-diagram"></i> Backend & Concepts</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Distributed Systems</span>
+                                    <span class="skill-tag">Microservices</span>
+                                    <span class="skill-tag">System Design</span>
+                                    <span class="skill-tag">Design Patterns</span>
+                                    <span class="skill-tag">Event Driven</span>
+                                    <span class="skill-tag">Large Scale Systems</span>
+                                    <span class="skill-tag">REST APIs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Education Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="education">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">Education</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="row experience">
+                    <div class="col-lg-12 mr-auto">
+                        <div class="experience_card">
+                            <div class="exp-top">
+                                <h5 class="exp-title">B. Tech</h5>
+                                <div class="exp-row">
+                                    <span class="exp-company">Indian Institute of Technology Patna</span>
+                                    <span class="exp-date">May 2019 - Jul 2023</span>
+                                </div>
+                                <span class="exp-location">CGPA: 8.06</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="project">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">Projects</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-clipboard-check fa-3x"></i></div>
+                            <h3>Review Portal</h3>
+                            <p>MERN stack app enabling 10+ TAs to submit reviews for 100+ student projects with auth and email notifications.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/TAbhay/Review_Project" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-wallet fa-3x"></i></div>
+                            <h3>Wallet</h3>
+                            <p>Full-stack web app to track daily expenses and income for 50+ users using Node.js, React, and MongoDB.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/TAbhay/Wallet" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-eye fa-3x"></i></div>
+                            <h3>Face Detection</h3>
+                            <p>A web app which can detect faces using AI/ML models with real-time processing.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/TAbhay/face-detection" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-file-alt fa-3x"></i></div>
+                            <h3>Transcript Generator</h3>
+                            <p>A GUI-based application to generate semester-wise marksheets.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/TAbhay/Transcript-Generator" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-chart-line fa-3x"></i></div>
+                            <h3>Covid Tracker</h3>
+                            <p>A website which can track current status of Covid-19 with data visualization.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/TAbhay/Covid" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <div class="box">
+                            <div class="box-body"></div>
+                            <div class="box-item"><i class="fas fa-envelope-open-text fa-3x"></i></div>
+                            <h3>Marksheet Generator</h3>
+                            <p>A GUI-based application to generate and mail quiz marksheets.</p>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/TAbhay/Marksheet-Generator" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Achievements Section-->
+        <section class="page-section bg-secondary text-white mb-0" id="achievements">
+            <div class="container">
+                <h2 class="page-section-heading text-center text-uppercase text-white">Achievements</h2>
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <ul class="achievements-list">
+                            <li>Awarded performance bonuses of <b>130%</b> and <b>160%</b> in two consecutive quarters at MicroStrategy for outstanding contributions.</li>
+                            <li><b>AWS Certified Solutions Architect - Associate</b>.</li>
+                            <li><b>4 Star</b> CodeChef Rating 1807 – Global rank 198 in Div-2 contest.</li>
+                            <li>Google Kickstart (Rank 957, Round E) · Facebook Hackercup (Qualified Round 1)</li>
+                            <li>Amazon Hiring Challenge: Secured <b>1,370th</b> rank among 20,000 participants.</li>
+                            <li>Solved <b>500+</b> problems on platforms like Leetcode, Codeforces, GeeksForGeeks, and CSES.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer text-center" id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <p class="lead mb-0">Bengaluru, Karnataka<br/>India</p>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Connect</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/TAbhay" target="_blank" aria-label="GitHub"><i class="fab fa-fw fa-github"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/tabhay24/" target="_blank" aria-label="LinkedIn"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">Email</h4>
+                        <p class="lead mb-0">tiwariabhay.works@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="copyright py-4 text-center text-white" id="copy-id">
+            <div class="container"><small>© Abhay Tiwari <span id="copyrightYear"></span></small></div>
+        </div>
+        <!-- Scroll to Top Button-->
+        <div class="scroll-to-top d-lg-none position-fixed">
+            <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        <!-- Floating Terminal Launch Button -->
+        <div id="terminalToggleBtn" title="Launch Developer Terminal (~ key)" class="terminal-toggle-btn">
+            <i class="fas fa-terminal"></i>
+        </div>
+
+        <!-- Hidden Developer Terminal CLI Overlay -->
+        <div id="developerTerminal" class="dev-terminal-overlay hidden">
+            <!-- Canvas background for Matrix Digital Rain -->
+            <canvas id="terminalCanvas" class="terminal-matrix-canvas"></canvas>
+            
+            <!-- Glassmorphic Terminal Container -->
+            <div class="terminal-container">
+                <!-- Mac Command dots Header -->
+                <div class="terminal-header">
+                    <div class="header-buttons">
+                        <span class="btn-dot close-btn" id="terminalCloseBtn"></span>
+                        <span class="btn-dot minimize-btn"></span>
+                        <span class="btn-dot expand-btn"></span>
+                    </div>
+                    <div class="header-title">abhay@tiwari: ~ (bash)</div>
+                </div>
+                
+                <!-- Scrollable Console Body -->
+                <div class="terminal-body" id="terminalBody">
+                    <div class="terminal-status-grid">
+                        <div>
+                            <span class="terminal-status-label">session</span>
+                            <strong>portfolio-shell</strong>
+                        </div>
+                        <div>
+                            <span class="terminal-status-label">mode</span>
+                            <strong>interactive</strong>
+                        </div>
+                        <div>
+                            <span class="terminal-status-label">status</span>
+                            <strong class="terminal-online">online</strong>
+                        </div>
+                    </div>
+                    <div class="terminal-welcome">
+                        <p>Welcome to the Developer Terminal. [Version 3.1.26-RELEASE]</p>
+                        <p>Type <span class="cmd-highlight">help</span> to view all available commands. Press <span class="cmd-highlight">~</span> or click close to exit.</p>
+                    </div>
+                    <div class="terminal-command-chips" aria-label="Quick terminal commands">
+                        <button type="button" class="terminal-chip" data-terminal-command="about">about</button>
+                        <button type="button" class="terminal-chip" data-terminal-command="skills">skills</button>
+                        <button type="button" class="terminal-chip" data-terminal-command="experience">experience</button>
+                        <button type="button" class="terminal-chip" data-terminal-command="matrix">matrix</button>
+                        <button type="button" class="terminal-chip" data-terminal-command="clear">clear</button>
+                    </div>
+                    <div class="terminal-output-log" id="terminalOutputLog"></div>
+                    <!-- Prompt line -->
+                    <div class="terminal-prompt-line">
+                        <span class="prompt-user">abhay@tiwari:~$</span>
+                        <span class="prompt-text-input" id="terminalPromptInput"></span>
+                        <span class="prompt-cursor"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Hidden input to capture standard typing -->
+            <input type="text" id="terminalHiddenInput" class="terminal-hidden-input" autocomplete="off" spellcheck="false">
+        </div>
+
+        <!-- Scripts-->
+        <script type="module" src="/src/main.js"></script>
+    </body>
+</html>

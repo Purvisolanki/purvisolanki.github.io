@@ -1,0 +1,19 @@
+{
+  "name": "purvisolanki-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "4.5.3",
+    "jquery": "3.5.1",
+    "jquery.easing": "1.4.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}
