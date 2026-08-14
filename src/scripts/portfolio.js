@@ -658,39 +658,35 @@
     }
     animCelestialBackground();
 
-    // Realistic fluttering/floating white paper airplane animation next to the name
+    // Gliding left-to-right paper plane animation with minor up/down flutter range
     (function() {
         var plane = document.getElementById('paperPlaneContainer');
-        if (!plane) return;
+        var nav = document.getElementById('mainNav');
+        if (!plane || !nav) return;
 
+        var px = -60;
+        var py = 25;
         var time = 0;
-        var lastRandX = 0;
-        var lastRandY = 0;
-        var targetRandX = 0;
-        var targetRandY = 0;
-
+        
         function animatePlane() {
-            time += 0.04;
+            time += 0.045;
             
-            // Periodically pick minor random wind draft target offsets every 30 frames
-            if (Math.floor(time * 10) % 3 === 0) {
-                targetRandX = (Math.random() - 0.5) * 8; // -4px to +4px flutter range
-                targetRandY = (Math.random() - 0.5) * 8; // -4px to +4px flutter range
+            var navWidth = nav.clientWidth;
+            // Flight movement left to right
+            px += 2.0;
+            if (px > navWidth + 60) {
+                px = -60;
             }
 
-            // Interpolate smoothly towards random offsets to keep flight realistic
-            lastRandX += (targetRandX - lastRandX) * 0.1;
-            lastRandY += (targetRandY - lastRandY) * 0.1;
+            // High frequency short-range up/down flutter (3-4 cm / ~10px)
+            py = 22 + Math.sin(time) * 11 + Math.cos(time * 2.2) * 4;
 
-            // Mathematical smooth wave loop
-            var floatX = Math.sin(time * 0.8) * 3 + lastRandX;
-            var floatY = Math.cos(time * 1.2) * 3.5 + lastRandY;
+            // Glide tilt (matches climbing/descending angle)
+            var angle = Math.cos(time) * 12 + Math.sin(time * 2.2) * 4;
 
-            // Dynamic rotation based on vertical ascent/descent rate + slight flutter tilt
-            var angle = -10 + Math.sin(time * 1.5) * 6 + (lastRandY * 2.5); // base angle pointing slightly up-right
-
-            // Apply relative offsets
-            plane.style.transform = 'translate(' + floatX + 'px, ' + floatY + 'px) rotate(' + angle + 'deg)';
+            plane.style.left = px + 'px';
+            plane.style.top = py + 'px';
+            plane.style.transform = 'rotate(' + angle + 'deg)';
 
             requestAnimationFrame(animatePlane);
         }
