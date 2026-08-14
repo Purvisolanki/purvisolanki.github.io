@@ -64,8 +64,8 @@ The color system is driven by CSS custom properties defined in `css/custom.css`.
 ## Contact
 
 - **Email:** solankipurvi.works@gmail.com
-- **GitHub:** [GitHub](https://github.com/)
-- **LinkedIn:** [LinkedIn](https://www.linkedin.com/)
+- **GitHub:** [Purvisolanki](https://github.com/Purvisolanki)
+- **LinkedIn:** [purvisolanki018](https://www.linkedin.com/in/purvisolanki018/)
 
 ---
 

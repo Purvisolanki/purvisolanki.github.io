@@ -76,16 +76,7 @@
         stopTimer: null,
 
         init: function () {
-            if (this.audioCtx) return true;
-            try {
-                var AudioContext = window.AudioContext || window.webkitAudioContext;
-                this.audioCtx = new AudioContext();
-                return true;
-            } catch (e) {
-                console.warn('AudioContext initialization failed:', e);
-                this.audioCtx = null;
-                return false;
-            }
+            return false;
         },
 
         resume: function () {
