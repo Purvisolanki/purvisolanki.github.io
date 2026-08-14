@@ -1538,36 +1538,34 @@
     }
 
     function printAbout() {
-        var html = '<p class="terminal-heading">About Abhay Tiwari:</p>' +
-                   '<p>Backend & Platforms Software Engineer with 2.5+ years of experience building APIs, distributed services, event-driven applications, and data movement systems.</p>' +
-                   '<p>B.Tech graduate from the <span class="cmd-highlight">Indian Institute of Technology Patna (IIT Patna)</span>. AWS Certified Solutions Architect - Associate.</p>' +
-                   '<p>Currently working as a Software Engineer at <span class="cmd-highlight">Riverbed Technology</span>. Known for debugging, code reviews, teamwork, leadership, ownership, and effective use of AI-assisted tools like Cursor and Claude.</p>';
+        var html = '<p class="terminal-heading">About Purvi Solanki:</p>' +
+                   '<p>Software Engineer with 2+ years of experience building scalable full-stack applications, REST APIs, and cloud-based integrations.</p>' +
+                   '<p>B.Tech graduate in CS & IT from <span class="cmd-highlight">Acropolis Institute of Technology and Research</span>.</p>' +
+                   '<p>Currently working as a Software Developer at <span class="cmd-highlight">Capgemini</span>, previously at <span class="cmd-highlight">Fin Coopers India</span>. Experienced in leveraging AI-assisted workflows (Claude, Cursor AI, ChatGPT) to optimize code quality and development velocity.</p>';
         $outputLog.append(html);
     }
 
     function printSkills() {
         var html = '<p class="terminal-heading">Classified Technical Competencies:</p>' +
-                   '<p><span class="cmd-highlight">[Languages]</span> Java, Python, Go, JavaScript, C++</p>' +
-                   '<p><span class="cmd-highlight">[Frameworks]</span> Spring Boot, FastAPI, Gin, Node.js, Express, React</p>' +
-                   '<p><span class="cmd-highlight">[Backend]</span> APIs, event-driven applications, distributed systems, data movement, service reliability</p>' +
-                   '<p><span class="cmd-highlight">[Engineering]</span> Debugging, code reviews, teamwork, leadership, ownership</p>' +
-                   '<p><span class="cmd-highlight">[AI Tools]</span> Cursor, Claude, AI-assisted debugging and development workflows</p>' +
-                   '<p><span class="cmd-highlight">[Cloud]</span> AWS Certified Solutions Architect - Associate, AWS, Azure, OCI, Kubernetes, OpenShift, Docker</p>' +
-                   '<p><span class="cmd-highlight">[Databases]</span> MongoDB, MySQL, MariaDB, Redis, DynamoDB</p>' +
-                   '<p><span class="cmd-highlight">[Middleware]</span> Apache Kafka (High throughput streaming), REST APIs</p>';
+                   '<p><span class="cmd-highlight">[Languages]</span> JavaScript (ES6+), C++, Python, HTML/CSS, SQL, PL/SQL</p>' +
+                   '<p><span class="cmd-highlight">[Frontend]</span> React.js, Next.js, Redux Toolkit, HTML5, CSS3, Bootstrap, Material-UI, Tailwind CSS</p>' +
+                   '<p><span class="cmd-highlight">[Backend]</span> Node.js, Express.js, REST APIs, FastAPI, Microservices, Object-Oriented Programming (OOP)</p>' +
+                   '<p><span class="cmd-highlight">[Databases]</span> MongoDB, MySQL, Oracle DB</p>' +
+                   '<p><span class="cmd-highlight">[Cloud & Tools]</span> AWS, Oracle Cloud (OCI/OIC), Docker (Basics), Kubernetes (Basics), Git, Postman</p>' +
+                   '<p><span class="cmd-highlight">[AI & Productivity]</span> Claude, Cursor AI, ChatGPT, GitHub Copilot, Agile, Scrum</p>';
         $outputLog.append(html);
     }
 
     function printExperience() {
         var html = '<p class="terminal-heading">Professional Career Timeline:</p>' +
-                   '<p><span class="cmd-highlight">Riverbed Technology (Jan 2026 - Present)</span></p>' +
-                   '<p>  - Data Express team: backend systems for high-speed, low-latency data movement across AWS, OCI, Azure, and same-cloud environments.</p>' +
-                   '<p><span class="cmd-highlight">Strategy / MicroStrategy (Oct 2024 - Jan 2026)</span></p>' +
-                   '<p>  - Developed migration APIs for 2,000+ customer environments.</p>' +
-                   '<p>  - Built MSTR-CLI in Go/Python for customer environment management and automation.</p>' +
-                   '<p><span class="cmd-highlight">Jio Platforms Limited (Oct 2023 - Sep 2024)</span></p>' +
-                   '<p>  - Built Cluster Validation Engine in Go/React for cluster sanity checks, health reports, and bulk validations.</p>' +
-                   '<p>  - Developed backend workflows for Mimosa platform reliability, reporting, and performance validation.</p>';
+                   '<p><span class="cmd-highlight">Capgemini (Dec 2024 - Present)</span></p>' +
+                   '<p>  - Modernizing enterprise modules for BHI project using React, Node.js, Express, and Oracle Cloud (OCI/OIC).</p>' +
+                   '<p>  - Optimized backend API integrations, reducing manual processing effort by 30%.</p>' +
+                   '<p><span class="cmd-highlight">Fin Coopers India Pvt Ltd (Jul 2024 - Nov 2024)</span></p>' +
+                   '<p>  - Maintained Finexe 2.0 loan platform and corporate sites using MERN stack.</p>' +
+                   '<p>  - Boosted UI responsiveness and state management efficiency by 25%.</p>' +
+                   '<p><span class="cmd-highlight">Persistent Systems (Jul 2023 - Aug 2023)</span></p>' +
+                   '<p>  - Martian Intern: DSA, DBMS, and programming assessment modules.</p>';
         $outputLog.append(html);
     }
 
@@ -1580,9 +1578,9 @@
             "Executing: rm -rf /",
             "Scope: ALL STORAGE STORAGE_BANKS",
             "DELETING /sys/kernel/security/integrity/...",
-            "DELETING /var/lib/mongodb/cassandra/replica_sets...",
+            "DELETING /var/lib/mongodb/oracle/oic_integrations...",
             "DELETING /etc/kubernetes/manifests/kube-apiserver.yaml...",
-            "DELETING /usr/bin/riverbed/telemetry/gateway...",
+            "DELETING /usr/bin/capgemini/bhi/workflow_service...",
             "DELETING C:\\Windows\\System32\\hal.dll...",
             "CRITICAL FAULT: KERNEL DELETION SUCCESSFUL.",
             "CONNECTION TERMINATED. HARD REBOOT REQUIRED..."
@@ -1608,7 +1606,7 @@
             '<div class="override-glitch-text">SYSTEM OVERRIDE INITIATED</div>' +
             '<p>CRITICAL HARD DISK CORRUPTION SECTOR: 0x00A1F</p>' +
             '<p>BOOT LOADER INTEGRITY CHECK: FAILED</p>' +
-            '<p class="override-recovered-msg">Just kidding, welcome to Abhay\'s portfolio! 😊</p>' +
+            '<p class="override-recovered-msg">Just kidding, welcome to Purvi\'s portfolio! 😊</p>' +
             '<p style="color: #64748b; margin-top: 1.5rem;">System will recover automatically in 3 seconds...</p>' +
             '</div>');
         $('body').append($glitch);
