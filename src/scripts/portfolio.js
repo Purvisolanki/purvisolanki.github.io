@@ -52,7 +52,9 @@
     });
 
     // ---- Scrollspy ----
-    $('body').scrollspy({ target: '#mainNav', offset: 10 });
+    if (typeof $.fn.scrollspy === 'function') {
+        $('body').scrollspy({ target: '#mainNav', offset: 10 });
+    }
 
     // ---- Navbar shrink logic removed (navbar is no longer fixed) ----
 
@@ -673,13 +675,13 @@
             
             var screenWidth = window.innerWidth;
             // Flight movement left to right across full viewport
-            px += 2.0;
+            px += 3.0; // faster speed
             if (px > screenWidth + 60) {
                 px = -60;
             }
 
-            // High frequency short-range up/down flutter (3-4 cm / ~10px)
-            py = 22 + Math.sin(time) * 11 + Math.cos(time * 2.2) * 4;
+            // Adjust flutter amplitude for smoother motion
+            py = 22 + Math.sin(time) * 8 + Math.cos(time * 2.2) * 3;
 
             // Glide tilt (matches climbing/descending angle)
             var angle = Math.cos(time) * 12 + Math.sin(time * 2.2) * 4;
