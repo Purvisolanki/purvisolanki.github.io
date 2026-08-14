@@ -803,8 +803,8 @@ body.light-mode .exp-company { color: var(--accent) !important; }
 
 /* Add spacing between sections */
 .page-section {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
 }
 
 .masthead + .page-section {
@@ -1210,17 +1210,17 @@ body.light-mode .plane-sound-hint {
 /* Interactive Paper Plane Container */
 .paper-plane-container {
     position: fixed;
-    top: 80px; /* position below navbar */
+    top: 85px; /* position below navbar */
     left: -60px; /* start off-screen left */
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 5;
+    z-index: 1050; /* position above section overlays */
     transform-origin: center center;
     pointer-events: none;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
 }
 
 .paper-plane-svg {

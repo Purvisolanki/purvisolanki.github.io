@@ -336,352 +336,353 @@
     // CELESTIAL BACKGROUND CANVAS (Moon, Stars, Asteroids - Minimal Movement)
     // ========================================================================
     var celestialCanvas = document.getElementById('celestialCanvas');
-    var celestialCtx = celestialCanvas.getContext('2d');
-    
-    var celestialWidth = celestialCanvas.clientWidth;
-    var celestialHeight = celestialCanvas.clientHeight;
-    
-    // Resize and set up celestial canvas
-    function resizeCelestialCanvas() {
-        celestialWidth = celestialCanvas.clientWidth;
-        celestialHeight = celestialCanvas.clientHeight;
-        celestialCanvas.width = celestialWidth;
-        celestialCanvas.height = celestialHeight;
-    }
-    resizeCelestialCanvas();
-    $(window).on('resize', resizeCelestialCanvas);
-
-    // Celestial background objects (static/minimal movement)
-    var celestialBgObjects = [];
-    var celestialBgStars = [];
-    
-    function initCelestialBackground() {
-        celestialBgStars = [];
-        for (var s = 0; s < 120; s++) {
-            celestialBgStars.push({
-                x: Math.random() * celestialWidth,
-                y: Math.random() * celestialHeight,
-                size: 0.6 + Math.random() * 1.6,
-                speedMult: 0.05 + Math.random() * 0.15,
-                twinkle: Math.random() * Math.PI * 2
-            });
+    if (celestialCanvas) {
+        var celestialCtx = celestialCanvas.getContext('2d');
+        
+        var celestialWidth = celestialCanvas.clientWidth;
+        var celestialHeight = celestialCanvas.clientHeight;
+        
+        // Resize and set up celestial canvas
+        function resizeCelestialCanvas() {
+            celestialWidth = celestialCanvas.clientWidth;
+            celestialHeight = celestialCanvas.clientHeight;
+            celestialCanvas.width = celestialWidth;
+            celestialCanvas.height = celestialHeight;
         }
-        
-        celestialBgObjects = [
-            {
-                type: 'sun',
-                x: celestialWidth * 0.58,
-                y: 86,
-                size: 15,
-                color: '#f59e0b',
-                speed: 0.02
-            },
-            {
-                type: 'saturn',
-                x: celestialWidth * 0.82,
-                y: 70,
-                size: 11,
-                color: '#d8b4fe',
-                speed: 0.015
-            },
-            {
-                type: 'mars',
-                x: celestialWidth * 0.7,
-                y: 50,
-                size: 8,
-                color: '#fca5a5',
-                speed: 0.02
-            },
-            {
-                type: 'moon',
-                x: celestialWidth - 120,
-                y: 30,
-                size: 13,
-                color: '#e2e8f0',
-                speed: 0.008
-            },
-            {
-                type: 'asteroid',
-                x: celestialWidth * 0.42,
-                y: 72,
-                size: 5,
-                color: '#8a979e',
-                rotation: 0,
-                rotSpeed: 0.008,
-                speed: 0.01
-            },
-            {
-                type: 'asteroid',
-                x: celestialWidth * 0.55,
-                y: 20,
-                size: 6.5,
-                color: '#8a979e',
-                rotation: 1.2,
-                rotSpeed: -0.006,
-                speed: 0.012
-            },
-            {
-                type: 'asteroid',
-                x: celestialWidth * 0.85,
-                y: 48,
-                size: 4.5,
-                color: '#8a979e',
-                rotation: 0.5,
-                rotSpeed: 0.01,
-                speed: 0.008
-            },
-            {
-                type: 'fighter',
-                x: celestialWidth * 0.38,
-                y: 78,
-                size: 12,
-                color: '#bae6fd',
-                rotation: -0.08,
-                speed: 0.03
-            },
-            {
-                type: 'twinFighter',
-                x: celestialWidth * 0.62,
-                y: 62,
-                size: 10,
-                color: '#cbd5e1',
-                rotation: 0.08,
-                speed: 0.026
-            },
-            {
-                type: 'greenPod',
-                x: celestialWidth * 0.92,
-                y: 82,
-                size: 9,
-                color: '#86efac',
-                rotation: -0.04,
-                speed: 0.02
-            }
-        ];
-    }
-    initCelestialBackground();
+        resizeCelestialCanvas();
+        $(window).on('resize', resizeCelestialCanvas);
 
-    // Animate celestial background
-    var celestialTime = 0;
-    function animCelestialBackground() {
-        celestialTime += 0.008; // much slower than tunnel
+        // Celestial background objects (static/minimal movement)
+        var celestialBgObjects = [];
+        var celestialBgStars = [];
         
-        celestialCtx.clearRect(0, 0, celestialWidth, celestialHeight);
-        
-        // Draw background stars
-        for (var s = 0; s < celestialBgStars.length; s++) {
-            var star = celestialBgStars[s];
-            star.x -= 0.35 * star.speedMult;
-            if (star.x < -5) {
-                star.x = celestialWidth + 5;
-                star.y = Math.random() * celestialHeight;
+        function initCelestialBackground() {
+            celestialBgStars = [];
+            for (var s = 0; s < 120; s++) {
+                celestialBgStars.push({
+                    x: Math.random() * celestialWidth,
+                    y: Math.random() * celestialHeight,
+                    size: 0.6 + Math.random() * 1.6,
+                    speedMult: 0.05 + Math.random() * 0.15,
+                    twinkle: Math.random() * Math.PI * 2
+                });
             }
             
-            var starGlow = 0.3 + (Math.sin(celestialTime * 1.5 + star.twinkle) * 0.25);
-            celestialCtx.globalAlpha = Math.min(0.85, starGlow);
-            celestialCtx.fillStyle = star.size > 1.4 ? '#f8fafc' : accentColor;
-            celestialCtx.shadowBlur = star.size > 1.4 ? 4 : 1.5;
-            celestialCtx.shadowColor = celestialCtx.fillStyle;
-            celestialCtx.beginPath();
-            celestialCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-            celestialCtx.fill();
-        }
-        celestialCtx.shadowBlur = 0;
-        celestialCtx.globalAlpha = 1.0;
-        
-        // Draw background celestial objects
-        for (var c = 0; c < celestialBgObjects.length; c++) {
-            var obj = celestialBgObjects[c];
-            obj.x -= 0.4 * obj.speed;
-            
-            if (obj.x < -80) {
-                obj.x = celestialWidth + 80;
-                obj.y = 20 + Math.random() * (celestialHeight - 40);
-            }
-            
-            celestialCtx.save();
-            celestialCtx.globalAlpha = 0.88;
-            
-            if (obj.type === 'sun') {
-                var sunGlow = celestialCtx.createRadialGradient(obj.x, obj.y, 2, obj.x, obj.y, obj.size * 2);
-                sunGlow.addColorStop(0, '#fef08a');
-                sunGlow.addColorStop(0.3, '#f59e0b');
-                sunGlow.addColorStop(1, 'rgba(245, 158, 11, 0)');
-                celestialCtx.fillStyle = sunGlow;
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x, obj.y, obj.size * 2, 0, Math.PI * 2);
-                celestialCtx.fill();
-                celestialCtx.globalAlpha = 0.8;
-                celestialCtx.fillStyle = '#fde68a';
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x, obj.y, obj.size * 0.7, 0, Math.PI * 2);
-                celestialCtx.fill();
-            }
-            else if (obj.type === 'saturn') {
-                var saturnGlow = celestialCtx.createRadialGradient(obj.x, obj.y, 1, obj.x, obj.y, obj.size * 2.2);
-                saturnGlow.addColorStop(0, obj.color);
-                saturnGlow.addColorStop(0.8, 'rgba(168, 85, 247, 0.12)');
-                saturnGlow.addColorStop(1, 'rgba(168, 85, 247, 0)');
-                celestialCtx.fillStyle = saturnGlow;
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x, obj.y, obj.size * 2.2, 0, Math.PI * 2);
-                celestialCtx.fill();
-                
-                celestialCtx.fillStyle = obj.color;
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
-                celestialCtx.fill();
-                
-                celestialCtx.strokeStyle = '#e9d5ff';
-                celestialCtx.lineWidth = 2;
-                celestialCtx.save();
-                celestialCtx.translate(obj.x, obj.y);
-                celestialCtx.rotate(-0.25);
-                celestialCtx.scale(1.9, 0.35);
-                celestialCtx.beginPath();
-                celestialCtx.arc(0, 0, obj.size * 1.3, 0, Math.PI * 2);
-                celestialCtx.stroke();
-                celestialCtx.restore();
-            }
-            else if (obj.type === 'mars') {
-                var marsGlow = celestialCtx.createRadialGradient(obj.x - 1, obj.y - 1, 0, obj.x, obj.y, obj.size);
-                marsGlow.addColorStop(0, '#fca5a5');
-                marsGlow.addColorStop(0.9, '#dc2626');
-                marsGlow.addColorStop(1, 'rgba(220, 38, 38, 0)');
-                celestialCtx.fillStyle = marsGlow;
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
-                celestialCtx.fill();
-                celestialCtx.strokeStyle = 'rgba(254, 202, 202, 0.5)';
-                celestialCtx.lineWidth = 1;
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x - 2, obj.y - 1, obj.size * 0.45, 0.2, 2.4);
-                celestialCtx.stroke();
-            }
-            else if (obj.type === 'moon') {
-                celestialCtx.fillStyle = obj.color;
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
-                celestialCtx.fill();
-                
-                celestialCtx.globalCompositeOperation = 'destination-out';
-                celestialCtx.fillStyle = 'black';
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x - obj.size * 0.45, obj.y - obj.size * 0.15, obj.size * 1.05, 0, Math.PI * 2);
-                celestialCtx.fill();
-                celestialCtx.globalCompositeOperation = 'source-over';
-                
-                celestialCtx.globalAlpha = 0.08;
-                celestialCtx.fillStyle = '#ffffff';
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x, obj.y, obj.size * 1.3, 0, Math.PI * 2);
-                celestialCtx.fill();
-                celestialCtx.globalAlpha = 0.22;
-                celestialCtx.fillStyle = '#94a3b8';
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.x + obj.size * 0.25, obj.y - obj.size * 0.25, obj.size * 0.16, 0, Math.PI * 2);
-                celestialCtx.arc(obj.x + obj.size * 0.1, obj.y + obj.size * 0.3, obj.size * 0.12, 0, Math.PI * 2);
-                celestialCtx.fill();
-            }
-            else if (obj.type === 'asteroid') {
-                obj.rotation += obj.rotSpeed;
-                celestialCtx.fillStyle = obj.color;
-                celestialCtx.save();
-                celestialCtx.translate(obj.x, obj.y);
-                celestialCtx.rotate(obj.rotation);
-                
-                celestialCtx.beginPath();
-                var points = 6;
-                var radStep = (Math.PI * 2) / points;
-                for (var p = 0; p < points; p++) {
-                    var r = obj.size * (0.75 + Math.sin(p * 2 + obj.size) * 0.2);
-                    var pxVal = Math.cos(p * radStep) * r;
-                    var pyVal = Math.sin(p * radStep) * r;
-                    if (p === 0) celestialCtx.moveTo(pxVal, pyVal);
-                    else celestialCtx.lineTo(pxVal, pyVal);
+            celestialBgObjects = [
+                {
+                    type: 'sun',
+                    x: celestialWidth * 0.58,
+                    y: 86,
+                    size: 15,
+                    color: '#f59e0b',
+                    speed: 0.02
+                },
+                {
+                    type: 'saturn',
+                    x: celestialWidth * 0.82,
+                    y: 70,
+                    size: 11,
+                    color: '#d8b4fe',
+                    speed: 0.015
+                },
+                {
+                    type: 'mars',
+                    x: celestialWidth * 0.7,
+                    y: 50,
+                    size: 8,
+                    color: '#fca5a5',
+                    speed: 0.02
+                },
+                {
+                    type: 'moon',
+                    x: celestialWidth - 120,
+                    y: 30,
+                    size: 13,
+                    color: '#e2e8f0',
+                    speed: 0.008
+                },
+                {
+                    type: 'asteroid',
+                    x: celestialWidth * 0.42,
+                    y: 72,
+                    size: 5,
+                    color: '#8a979e',
+                    rotation: 0,
+                    rotSpeed: 0.008,
+                    speed: 0.01
+                },
+                {
+                    type: 'asteroid',
+                    x: celestialWidth * 0.55,
+                    y: 20,
+                    size: 6.5,
+                    color: '#8a979e',
+                    rotation: 1.2,
+                    rotSpeed: -0.006,
+                    speed: 0.012
+                },
+                {
+                    type: 'asteroid',
+                    x: celestialWidth * 0.85,
+                    y: 48,
+                    size: 4.5,
+                    color: '#8a979e',
+                    rotation: 0.5,
+                    rotSpeed: 0.01,
+                    speed: 0.008
+                },
+                {
+                    type: 'fighter',
+                    x: celestialWidth * 0.38,
+                    y: 78,
+                    size: 12,
+                    color: '#bae6fd',
+                    rotation: -0.08,
+                    speed: 0.03
+                },
+                {
+                    type: 'twinFighter',
+                    x: celestialWidth * 0.62,
+                    y: 62,
+                    size: 10,
+                    color: '#cbd5e1',
+                    rotation: 0.08,
+                    speed: 0.026
+                },
+                {
+                    type: 'greenPod',
+                    x: celestialWidth * 0.92,
+                    y: 82,
+                    size: 9,
+                    color: '#86efac',
+                    rotation: -0.04,
+                    speed: 0.02
                 }
-                celestialCtx.closePath();
+            ];
+        }
+        initCelestialBackground();
+
+        // Animate celestial background
+        var celestialTime = 0;
+        function animCelestialBackground() {
+            celestialTime += 0.008; // much slower than tunnel
+            
+            celestialCtx.clearRect(0, 0, celestialWidth, celestialHeight);
+            
+            // Draw background stars
+            for (var s = 0; s < celestialBgStars.length; s++) {
+                var star = celestialBgStars[s];
+                star.x -= 0.35 * star.speedMult;
+                if (star.x < -5) {
+                    star.x = celestialWidth + 5;
+                    star.y = Math.random() * celestialHeight;
+                }
+                
+                var starGlow = 0.3 + (Math.sin(celestialTime * 1.5 + star.twinkle) * 0.25);
+                celestialCtx.globalAlpha = Math.min(0.85, starGlow);
+                celestialCtx.fillStyle = star.size > 1.4 ? '#f8fafc' : accentColor;
+                celestialCtx.shadowBlur = star.size > 1.4 ? 4 : 1.5;
+                celestialCtx.shadowColor = celestialCtx.fillStyle;
+                celestialCtx.beginPath();
+                celestialCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
                 celestialCtx.fill();
+            }
+            celestialCtx.shadowBlur = 0;
+            celestialCtx.globalAlpha = 1.0;
+            
+            // Draw background celestial objects
+            for (var c = 0; c < celestialBgObjects.length; c++) {
+                var obj = celestialBgObjects[c];
+                obj.x -= 0.4 * obj.speed;
+                
+                if (obj.x < -80) {
+                    obj.x = celestialWidth + 80;
+                    obj.y = 20 + Math.random() * (celestialHeight - 40);
+                }
+                
+                celestialCtx.save();
+                celestialCtx.globalAlpha = 0.88;
+                
+                if (obj.type === 'sun') {
+                    var sunGlow = celestialCtx.createRadialGradient(obj.x, obj.y, 2, obj.x, obj.y, obj.size * 2);
+                    sunGlow.addColorStop(0, '#fef08a');
+                    sunGlow.addColorStop(0.3, '#f59e0b');
+                    sunGlow.addColorStop(1, 'rgba(245, 158, 11, 0)');
+                    celestialCtx.fillStyle = sunGlow;
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x, obj.y, obj.size * 2, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                    celestialCtx.globalAlpha = 0.8;
+                    celestialCtx.fillStyle = '#fde68a';
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x, obj.y, obj.size * 0.7, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                }
+                else if (obj.type === 'saturn') {
+                    var saturnGlow = celestialCtx.createRadialGradient(obj.x, obj.y, 1, obj.x, obj.y, obj.size * 2.2);
+                    saturnGlow.addColorStop(0, obj.color);
+                    saturnGlow.addColorStop(0.8, 'rgba(168, 85, 247, 0.12)');
+                    saturnGlow.addColorStop(1, 'rgba(168, 85, 247, 0)');
+                    celestialCtx.fillStyle = saturnGlow;
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x, obj.y, obj.size * 2.2, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                    
+                    celestialCtx.fillStyle = obj.color;
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                    
+                    celestialCtx.strokeStyle = '#e9d5ff';
+                    celestialCtx.lineWidth = 2;
+                    celestialCtx.save();
+                    celestialCtx.translate(obj.x, obj.y);
+                    celestialCtx.rotate(-0.25);
+                    celestialCtx.scale(1.9, 0.35);
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(0, 0, obj.size * 1.3, 0, Math.PI * 2);
+                    celestialCtx.stroke();
+                    celestialCtx.restore();
+                }
+                else if (obj.type === 'mars') {
+                    var marsGlow = celestialCtx.createRadialGradient(obj.x - 1, obj.y - 1, 0, obj.x, obj.y, obj.size);
+                    marsGlow.addColorStop(0, '#fca5a5');
+                    marsGlow.addColorStop(0.9, '#dc2626');
+                    marsGlow.addColorStop(1, 'rgba(220, 38, 38, 0)');
+                    celestialCtx.fillStyle = marsGlow;
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                    celestialCtx.strokeStyle = 'rgba(254, 202, 202, 0.5)';
+                    celestialCtx.lineWidth = 1;
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x - 2, obj.y - 1, obj.size * 0.45, 0.2, 2.4);
+                    celestialCtx.stroke();
+                }
+                else if (obj.type === 'moon') {
+                    celestialCtx.fillStyle = obj.color;
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x, obj.y, obj.size, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                    
+                    celestialCtx.globalCompositeOperation = 'destination-out';
+                    celestialCtx.fillStyle = 'black';
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x - obj.size * 0.45, obj.y - obj.size * 0.15, obj.size * 1.05, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                    celestialCtx.globalCompositeOperation = 'source-over';
+                    
+                    celestialCtx.globalAlpha = 0.08;
+                    celestialCtx.fillStyle = '#ffffff';
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x, obj.y, obj.size * 1.3, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                    celestialCtx.globalAlpha = 0.22;
+                    celestialCtx.fillStyle = '#94a3b8';
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.x + obj.size * 0.25, obj.y - obj.size * 0.25, obj.size * 0.16, 0, Math.PI * 2);
+                    celestialCtx.arc(obj.x + obj.size * 0.1, obj.y + obj.size * 0.3, obj.size * 0.12, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                }
+                else if (obj.type === 'asteroid') {
+                    obj.rotation += obj.rotSpeed;
+                    celestialCtx.fillStyle = obj.color;
+                    celestialCtx.save();
+                    celestialCtx.translate(obj.x, obj.y);
+                    celestialCtx.rotate(obj.rotation);
+                    
+                    celestialCtx.beginPath();
+                    var points = 6;
+                    var radStep = (Math.PI * 2) / points;
+                    for (var p = 0; p < points; p++) {
+                        var r = obj.size * (0.75 + Math.sin(p * 2 + obj.size) * 0.2);
+                        var pxVal = Math.cos(p * radStep) * r;
+                        var pyVal = Math.sin(p * radStep) * r;
+                        if (p === 0) celestialCtx.moveTo(pxVal, pyVal);
+                        else celestialCtx.lineTo(pxVal, pyVal);
+                    }
+                    celestialCtx.closePath();
+                    celestialCtx.fill();
+                    celestialCtx.restore();
+                }
+                else if (obj.type === 'fighter') {
+                    celestialCtx.translate(obj.x, obj.y);
+                    celestialCtx.rotate(obj.rotation);
+                    celestialCtx.shadowBlur = 8;
+                    celestialCtx.shadowColor = '#38bdf8';
+                    celestialCtx.fillStyle = obj.color;
+                    celestialCtx.beginPath();
+                    celestialCtx.moveTo(obj.size * 1.4, 0);
+                    celestialCtx.lineTo(-obj.size * 0.75, -obj.size * 0.42);
+                    celestialCtx.lineTo(-obj.size * 0.35, 0);
+                    celestialCtx.lineTo(-obj.size * 0.75, obj.size * 0.42);
+                    celestialCtx.closePath();
+                    celestialCtx.fill();
+                    celestialCtx.fillStyle = '#38bdf8';
+                    celestialCtx.fillRect(-obj.size * 1.2, -1, obj.size * 0.55, 2);
+                }
+                else if (obj.type === 'twinFighter') {
+                    celestialCtx.translate(obj.x, obj.y);
+                    celestialCtx.rotate(obj.rotation);
+                    celestialCtx.strokeStyle = '#e2e8f0';
+                    celestialCtx.fillStyle = obj.color;
+                    celestialCtx.lineWidth = 1.4;
+                    celestialCtx.shadowBlur = 7;
+                    celestialCtx.shadowColor = '#f8fafc';
+                    celestialCtx.fillRect(-obj.size * 0.85, -obj.size * 0.6, obj.size * 0.28, obj.size * 1.2);
+                    celestialCtx.fillRect(obj.size * 0.55, -obj.size * 0.6, obj.size * 0.28, obj.size * 1.2);
+                    celestialCtx.beginPath();
+                    celestialCtx.moveTo(-obj.size * 0.55, 0);
+                    celestialCtx.lineTo(obj.size * 0.55, 0);
+                    celestialCtx.stroke();
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(0, 0, obj.size * 0.28, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                }
+                else if (obj.type === 'greenPod') {
+                    celestialCtx.translate(obj.x, obj.y);
+                    celestialCtx.rotate(obj.rotation);
+                    celestialCtx.shadowBlur = 8;
+                    celestialCtx.shadowColor = '#86efac';
+                    celestialCtx.fillStyle = obj.color;
+                    celestialCtx.beginPath();
+                    celestialCtx.ellipse(0, 0, obj.size * 1.25, obj.size * 0.58, 0, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                    celestialCtx.fillStyle = '#dcfce7';
+                    celestialCtx.beginPath();
+                    celestialCtx.arc(obj.size * 0.22, -obj.size * 0.08, obj.size * 0.32, 0, Math.PI * 2);
+                    celestialCtx.fill();
+                }
+                
                 celestialCtx.restore();
             }
-            else if (obj.type === 'fighter') {
-                celestialCtx.translate(obj.x, obj.y);
-                celestialCtx.rotate(obj.rotation);
-                celestialCtx.shadowBlur = 8;
-                celestialCtx.shadowColor = '#38bdf8';
-                celestialCtx.fillStyle = obj.color;
-                celestialCtx.beginPath();
-                celestialCtx.moveTo(obj.size * 1.4, 0);
-                celestialCtx.lineTo(-obj.size * 0.75, -obj.size * 0.42);
-                celestialCtx.lineTo(-obj.size * 0.35, 0);
-                celestialCtx.lineTo(-obj.size * 0.75, obj.size * 0.42);
-                celestialCtx.closePath();
-                celestialCtx.fill();
-                celestialCtx.fillStyle = '#38bdf8';
-                celestialCtx.fillRect(-obj.size * 1.2, -1, obj.size * 0.55, 2);
-            }
-            else if (obj.type === 'twinFighter') {
-                celestialCtx.translate(obj.x, obj.y);
-                celestialCtx.rotate(obj.rotation);
-                celestialCtx.strokeStyle = '#e2e8f0';
-                celestialCtx.fillStyle = obj.color;
-                celestialCtx.lineWidth = 1.4;
-                celestialCtx.shadowBlur = 7;
-                celestialCtx.shadowColor = '#f8fafc';
-                celestialCtx.fillRect(-obj.size * 0.85, -obj.size * 0.6, obj.size * 0.28, obj.size * 1.2);
-                celestialCtx.fillRect(obj.size * 0.55, -obj.size * 0.6, obj.size * 0.28, obj.size * 1.2);
-                celestialCtx.beginPath();
-                celestialCtx.moveTo(-obj.size * 0.55, 0);
-                celestialCtx.lineTo(obj.size * 0.55, 0);
-                celestialCtx.stroke();
-                celestialCtx.beginPath();
-                celestialCtx.arc(0, 0, obj.size * 0.28, 0, Math.PI * 2);
-                celestialCtx.fill();
-            }
-            else if (obj.type === 'greenPod') {
-                celestialCtx.translate(obj.x, obj.y);
-                celestialCtx.rotate(obj.rotation);
-                celestialCtx.shadowBlur = 8;
-                celestialCtx.shadowColor = '#86efac';
-                celestialCtx.fillStyle = obj.color;
-                celestialCtx.beginPath();
-                celestialCtx.ellipse(0, 0, obj.size * 1.25, obj.size * 0.58, 0, 0, Math.PI * 2);
-                celestialCtx.fill();
-                celestialCtx.fillStyle = '#dcfce7';
-                celestialCtx.beginPath();
-                celestialCtx.arc(obj.size * 0.22, -obj.size * 0.08, obj.size * 0.32, 0, Math.PI * 2);
-                celestialCtx.fill();
-            }
             
-            celestialCtx.restore();
+            requestAnimationFrame(animCelestialBackground);
         }
-        
-        requestAnimationFrame(animCelestialBackground);
+        animCelestialBackground();
     }
-    animCelestialBackground();
 
     // Gliding left-to-right paper plane animation with minor up/down flutter range
     (function() {
         var plane = document.getElementById('paperPlaneContainer');
-        var nav = document.getElementById('mainNav');
-        if (!plane || !nav) return;
+        if (!plane) return;
 
         var px = -60;
-        var py = 25;
+        var py = 85;
         var time = 0;
         
         function animatePlane() {
-            time += 0.045;
+            time += 0.04;
             
             var screenWidth = window.innerWidth;
             // Flight movement left to right across full viewport
-            px += 3.0; // faster speed
+            px += 2.8;
             if (px > screenWidth + 60) {
                 px = -60;
             }
 
-            // Adjust flutter amplitude for smoother motion
-            py = 22 + Math.sin(time) * 8 + Math.cos(time * 2.2) * 3;
+            // Up/down flutter position just below navbar (around Y = 80-95px)
+            py = 85 + Math.sin(time) * 8 + Math.cos(time * 2.2) * 3;
 
             // Glide tilt (matches climbing/descending angle)
             var angle = Math.cos(time) * 12 + Math.sin(time * 2.2) * 4;
