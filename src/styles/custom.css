@@ -588,7 +588,7 @@ h2.text-white { color: var(--text) !important; }
 }
 
 .experience-grid-full-time {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
 }
 
 .experience-grid-internships {
@@ -723,6 +723,10 @@ h2.text-white { color: var(--text) !important; }
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     background: color-mix(in srgb, var(--bg-alt) 48%, transparent);
+}
+
+#experience .experience-grid-full-time .experience-details ul {
+    max-width: 900px;
 }
 
 .experience-details ul li:last-child {

@@ -222,6 +222,7 @@
                                     <span class="skill-tag">Tailwind CSS</span>
                                     <span class="skill-tag">HTML5</span>
                                     <span class="skill-tag">CSS3</span>
+                                    <span class="skill-tag">Material-UI</span>
                                     <span class="skill-tag">Responsive Design</span>
                                 </div>
                             </div>
@@ -321,9 +322,9 @@
                         <div class="box">
                             <div class="box-body"></div>
                             <div class="box-item"><i class="fas fa-user-shield fa-3x"></i></div>
-                            <h3>Full Authentication System</h3>
+                            <h3>AuthVault</h3>
                             <p>Secure Node.js backend authentication template featuring password encryption, login session controls, JWT tokens, and user profile management.</p>
-                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/Purvisolanki/Full-Authentication-System" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                            <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/Purvisolanki/AuthVault" target="_blank"><i class="fab fa-fw fa-github"></i></a>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
@@ -376,8 +377,20 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <ul class="achievements-list">
-                            <li><b>AWS Certified Solutions Architect – Associate</b> (AWS Certification).</li>
-                            <li><b>Oracle Cloud Infrastructure 2025 Architect Associate</b> (Oracle University – 1Z0-1072-25).</li>
+                            <li>
+                                <b>AWS Certified Solutions Architect – Associate</b> (AWS Certification).
+                                <a class="btn btn-sm btn-outline-light ml-2 certificate-link disabled" id="awsCertificateLink" aria-disabled="true" tabindex="-1">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                                    <span class="certificate-link-label">Add certificate PDF</span>
+                                </a>
+                            </li>
+                            <li>
+                                <b>Oracle Cloud Infrastructure 2025 Architect Associate</b> (Oracle University – 1Z0-1072-25).
+                                <a class="btn btn-sm btn-outline-light ml-2 certificate-link disabled" id="ociCertificateLink" aria-disabled="true" tabindex="-1">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                                    <span class="certificate-link-label">Add certificate PDF</span>
+                                </a>
+                            </li>
                             <li>Solved <b>500+ problems</b> on coding platforms like LeetCode, CodeChef, and GeeksforGeeks.</li>
                         </ul>
                     </div>
@@ -481,12 +494,43 @@
                 query: '?url',
                 import: 'default'
             });
+            const certificateMap = import.meta.glob('/src/assets/certificates/*.pdf', {
+                eager: true,
+                query: '?url',
+                import: 'default'
+            });
             const resumeUrl = Object.values(resumeMap)[0];
             const resumeLink = document.getElementById('resumeLink');
 
             if (resumeLink && resumeUrl) {
                 resumeLink.href = resumeUrl;
             }
+
+            const certificateLinks = [
+                {
+                    id: 'awsCertificateLink',
+                    path: '/src/assets/certificates/aws-certified-solutions-architect-associate.pdf'
+                },
+                {
+                    id: 'ociCertificateLink',
+                    path: '/src/assets/certificates/oracle-cloud-infrastructure-2025-architect-associate.pdf'
+                }
+            ];
+
+            certificateLinks.forEach(({ id, path }) => {
+                const link = document.getElementById(id);
+                const certificateUrl = certificateMap[path];
+
+                if (link && certificateUrl) {
+                    link.href = certificateUrl;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    link.classList.remove('disabled');
+                    link.setAttribute('aria-disabled', 'false');
+                    link.removeAttribute('tabindex');
+                    link.querySelector('.certificate-link-label').textContent = 'View certificate';
+                }
+            });
         </script>
         <script type="module" src="src/main.js"></script>
     </body>
