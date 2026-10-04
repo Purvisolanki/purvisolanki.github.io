@@ -556,6 +556,196 @@ h2.text-white { color: var(--text) !important; }
     color: var(--accent);
 }
 
+/* ---- Compact experience layout ---- */
+#experience .section-title-clean {
+    margin-bottom: 1.35rem !important;
+}
+
+.experience-group + .experience-group {
+    margin-top: 1.75rem;
+}
+
+.experience-group-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 0.85rem;
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.experience-group-title .svg-inline--fa,
+.experience-group-title i {
+    color: var(--accent);
+}
+
+.experience-grid {
+    display: grid;
+    align-items: start;
+    gap: 1rem;
+}
+
+.experience-grid-full-time {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.experience-grid-internships {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+#experience .experience_card {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 1.1rem 1.25rem;
+    margin: 0;
+    border-top: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+#experience .experience_card:hover {
+    transform: translateY(-3px);
+}
+
+#experience .exp-top {
+    margin-bottom: 0.75rem;
+}
+
+#experience .exp-title {
+    font-size: 1rem;
+}
+
+.internship-card .exp-company,
+.internship-card .exp-date,
+.internship-card .exp-location {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 0.3rem;
+}
+
+.internship-card .exp-company {
+    line-height: 1.4;
+}
+
+.experience-focus {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+    padding: 0.25rem 0.65rem;
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.experience-details {
+    margin-top: 0.25rem;
+    border-top: 1px solid var(--border);
+}
+
+.experience-details summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.45rem;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: var(--bg-alt);
+    color: var(--text-soft);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 700;
+    list-style: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.experience-details summary:hover {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.experience-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.details-summary-open {
+    display: none;
+}
+
+.experience-details[open] .details-summary-closed {
+    display: none;
+}
+
+.experience-details[open] .details-summary-open {
+    display: inline;
+}
+
+.experience-details summary::after {
+    content: '＋';
+    display: grid;
+    width: 1.4rem;
+    height: 1.4rem;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+.experience-details[open] summary::after {
+    content: '−';
+}
+
+.experience-details[open] summary {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.experience-details summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+.experience-details ul {
+    padding: 0.85rem 0.75rem 0.25rem;
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+    border-top: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: color-mix(in srgb, var(--bg-alt) 48%, transparent);
+}
+
+.experience-details ul li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .experience-grid-internships {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .experience-grid-full-time,
+    .experience-grid-internships {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-group + .experience-group {
+        margin-top: 1.4rem;
+    }
+}
+
 /* ---- Skills ---- */
 #skills .row {
     margin-left: 0;
